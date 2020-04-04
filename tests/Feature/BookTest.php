@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Book;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
@@ -22,7 +21,7 @@ class BookTest extends TestCase
 
         Artisan::call('db:seed --class=BookSeeder');
         $response = $this->get('/api/books');
-        $response->assertStatus(200);
+        $response->assertStatus(201);
         $response->assertSeeText('All Book Data Generated Successfully');
         $responseBody =  $response->decodeResponseJson();
         $this->assertNotEmpty($responseBody['data']);

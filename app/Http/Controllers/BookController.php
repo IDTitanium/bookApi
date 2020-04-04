@@ -21,6 +21,15 @@ class BookController extends Controller
         return $this->formatApiResponse('All Book Data Generated Successfully', 200, $data);
     }
 
+    public function formatApiResponse($message, $status, $data = null, $errors = null)
+    {
+        return response()->json([
+            'message' => $message,
+            'data' => $data,
+            'errors' => $errors,
+        ], $status);
+    }
+
     public function store(Request $request)
     {
         try {
@@ -43,14 +52,5 @@ class BookController extends Controller
         } catch (Exception $e) {
             return $this->formatApiResponse('Error while creating book', 500, null, $e);
         }
-    }
-
-    public function formatApiResponse($message, $status, $data = null, $errors = null)
-    {
-        return response()->json([
-            'message' => $message,
-            'data' => $data,
-            'errors' => $errors,
-        ], $status);
     }
 }
