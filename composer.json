@@ -61,6 +61,7 @@
             "php artisan clear-compiled",
             "chmod -R 777 public/",
             "chmod -R 777 storage/",
+            "php artisan key:generate",
             "php artisan config:cache"
         ]
     }
